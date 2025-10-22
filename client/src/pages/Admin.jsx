@@ -17,6 +17,7 @@ import ViewDitePlan from './admin/ditePlan/ViewDitePlan'
 export default function Admin() {
     const { token } = useContext(loginContext)
     const navigate = useNavigate()
+    let ADMIN_URL = import.meta.env.VITE_ADMIN_URL
 
     useEffect(() => {
         if (!token || token === "") {
@@ -29,7 +30,7 @@ export default function Admin() {
     }
 
     let userView = () => {
-        axios.get("http://localhost:8000/admin/auth/view",
+        axios.get(`${ADMIN_URL}/admin/auth/view`,
             {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("TOKEN")}`
@@ -48,8 +49,6 @@ export default function Admin() {
                 console.error("Login error:", error)
             })
     }
-    // <ToastContainer hideProgressBar position="top-center" closeButton={false} autoClose={2000} />
-    //         <div className='border cursor-pointer' onClick={userView}>Admin</div>
     return (
         <>
             <div className='max-w-[1200px] m-auto px-4 py-8'>
