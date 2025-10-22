@@ -53,7 +53,7 @@ export default function AddDitePlan() {
 
 
         if (id) {
-            axios.put(`http://localhost:8000/admin/dite/update/${id}`, AddUserObj)
+            axios.put(`${ADMIN_URL}/admin/dite/update/${id}`, AddUserObj)
                 .then((res) => res.data)
                 .then((finalData) => {
                     if (finalData.status) {
