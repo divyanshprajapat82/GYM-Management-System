@@ -38,20 +38,8 @@ export default function AddSupplement() {
         console.log("Form Submitted:", AddUserObj);
 
 
-
-        // let AddUserObj = {
-        //     name: formData.name,
-        //     brand: formData.brand,
-        //     amount: formData.amount,
-        //     stock: formData.stock,
-        //     image: formData.image
-        // }
-
-        // console.log(AddUserObj);
-
-
         if (id) {
-            axios.put(`http://localhost:8000/admin/store/update/${id}`, AddUserObj)
+            axios.put(`${ADMIN_URL}/admin/store/update/${id}`, AddUserObj)
                 .then((res) => res.data)
                 .then((finalData) => {
                     if (finalData.status) {
@@ -98,7 +86,7 @@ export default function AddSupplement() {
         })
 
         if (id) {
-            axios.get(`http://localhost:8000/admin/store/view/${id}`)
+            axios.get(`${ADMIN_URL}/admin/store/view/${id}`)
                 .then((res) => res.data)
                 .then((finalData) => {
                     // setMembers(finalData.data)
