@@ -12,6 +12,7 @@ export function MainContext({ children }) {
     // let token = localStorage.getItem("TOKEN")
 
     const [role, setRole] = useState("")
+    let ADMIN_URL = import.meta.env.VITE_ADMIN_URL
 
     // console.log(token);
 
@@ -63,7 +64,7 @@ export function MainContext({ children }) {
     // }, [])
 
     useEffect(() => {
-        axios.get("http://localhost:8000/admin/auth/profile-View",
+        axios.get(`${ADMIN_URL}/admin/auth/profile-View`,
             {
                 headers: {
                     // Authorization: `Bearer ${localStorage.getItem("TOKEN")}`
