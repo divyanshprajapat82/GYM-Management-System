@@ -34,7 +34,7 @@ export default function ViewMembers() {
     // }, []);
 
     let viewMember = () => {
-        axios.get("http://localhost:8000/admin/auth/view")
+        axios.get(`${ADMIN_URL}/admin/auth/view`)
             .then((res) => res.data)
             .then((finalData) => {
                 // if (finalData.status) {
@@ -67,38 +67,12 @@ export default function ViewMembers() {
                 toast.error("Login failed. Please try again.")
             })
         // }
-    }
-
-    // let singleView = () => {
-    //     axios.get(`http://localhost:8000/admin/auth/view/`)
-    //         .then((res) => res.data)
-    //         .then((finalData) => {
-    //             setMembers(finalData.data)
-    //         })
-    //         .catch((error) => {
-    //             toast.error("Login failed. Please try again.")
-    //             console.error("Login error:", error)
-    //         })
-    // }
+    
 
     useEffect(() => {
         viewMember()
-        // deleteMember()
-        // singleView()
     }, [])
 
-
-    // Placeholder for delete functionality
-    // const handleDelete = (id) => {
-    //     const updatedMembers = members.filter((member) => member.id !== id);
-    //     setMembers(updatedMembers);
-    //     alert(`Member with ID ${id} deleted.`);
-    // };
-
-    // // Placeholder for edit functionality
-    // const handleEdit = (id) => {
-    //     alert(`Edit functionality for Member ID ${id} is not implemented yet.`);
-    // };
 
     return (
         <>
