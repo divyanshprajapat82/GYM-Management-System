@@ -20,6 +20,8 @@ export default function Register() {
 
     let navigate = useNavigate()
 
+    let ADMIN_URL = import.meta.env.VITE_ADMIN_URL
+
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -54,7 +56,7 @@ export default function Register() {
         console.log(obj);
 
 
-        axios.post("http://localhost:8000/admin/auth/register", obj)
+        axios.post(`${ADMIN_URL}/admin/auth/register`, obj)
             .then((res) => res.data)
             .then((finalData) => {
                 if (finalData.status) {
