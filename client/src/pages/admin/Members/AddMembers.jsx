@@ -13,6 +13,7 @@ export default function AddMembers() {
     });
 
     const navigate = useNavigate();
+    let ADMIN_URL = import.meta.env.VITE_ADMIN_URL
 
     let { id } = useParams()
 
@@ -35,7 +36,7 @@ export default function AddMembers() {
 
 
         if (id) {
-            axios.put(`http://localhost:8000/admin/auth/update/${id}`, AddUserObj)
+            axios.put(`${ADMIN_URL}/admin/auth/update/${id}`, AddUserObj)
                 .then((res) => res.data)
                 .then((finalData) => {
                     if (finalData.status) {
@@ -49,7 +50,7 @@ export default function AddMembers() {
                     console.error("Login error:", error)
                 })
         } else {
-            axios.post("http://localhost:8000/admin/auth/add-user", AddUserObj)
+            axios.post(`${ADMIN_URL}/admin/auth/add-user`, AddUserObj)
                 .then((res) => res.data)
                 .then((finalData) => {
                     if (finalData.status) {
