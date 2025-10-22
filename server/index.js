@@ -8,13 +8,25 @@ require("dotenv").config();
 
 let app = express();
 app.use(express.json());
-app.use(cors());
+// app.use(cors());
+
+app.use(
+  cors({
+    origin: [
+      "https://gym-management-system-theta-flax.vercel.app"
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
 
 app.use("/admin", adminRoute);
 app.use("/web", webRoute);
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/gymManagementSystem")
+  // .connect("mongodb://127.0.0.1:27017/gymManagementSystem")
+  .connect("mongodb+srv://divyanshprajapat82_db_user:frYlR54Zh1vEMu9d@cluster0.vn9kvxp.mongodb.net/")
   .then(async () => {
     // let AdminLogin = await AuthModel.find()
     // AuthModel.insertOne({
