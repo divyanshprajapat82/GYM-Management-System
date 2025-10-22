@@ -15,6 +15,7 @@ export default function Login() {
 
 
     let navigate = useNavigate()
+    let ADMIN_URL = import.meta.env.VITE_ADMIN_URL
 
     useEffect(() => {
         if (token) {
@@ -58,7 +59,7 @@ export default function Login() {
             userPassword: password
         }
 
-        axios.post("http://localhost:8000/admin/auth/login", obj)
+        axios.post(`${ADMIN_URL}/admin/auth/login`, obj)
             .then((res) => res.data)
             .then((finalData) => {
                 if (finalData.status) {
