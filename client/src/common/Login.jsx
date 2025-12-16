@@ -12,6 +12,8 @@ export default function Login() {
     const [password, setPassword] = useState('')
     const [showPassword, setShowPassword] = useState(false)
     let { setUserRole, setToken, token } = useContext(loginContext)
+    const [loading, setLoading] = useState(false)
+
 
 
     let navigate = useNavigate()
@@ -23,36 +25,9 @@ export default function Login() {
         }
     }, [token, navigate])
 
-    //   let navigate = useNavigate()
-
-    // Check if user is already logged in, redirect to appropriate dashboard
-    // useEffect(() => {
-    //     // if (adminID !== "") {
-    //     //     // User is already logged in, redirect to admin dashboard
-
-    //     //     navigate("/admin/deshboard")
-    //     // }
-    // if (adminID == "admin") {
-    //     navigate("/admin")
-    // }
-    // if (adminID == "member") {
-    //     navigate("/member")
-    // }
-    // else {
-    //     navigate("/")
-    // }
-    // if (adminID == "admin") {
-    //     navigate("/admin/deshboard")
-    // } else if (adminID == "member") {
-    //     navigate("/members/deshboard")
-    // } else {
-    //     navigate("/")
-    // }
-
-    // }, [adminID, navigate])
-
     const handleSubmit = (e) => {
         e.preventDefault()
+        setLoading(true)
 
         let obj = {
             userEmail: email,
@@ -77,37 +52,12 @@ export default function Login() {
                 toast.error("Login failed. Please try again.")
                 console.error("Login error:", error)
             })
+        .finally(() => {
+            setLoading(false)
+        })
     }
 
-    // setAdminID(finalData.role[0].userType)
 
-    // const userType = finalData.role?.[0]?.userType
-    // setUserRole(finalData.role?.[0]?.userType)
-    // if (userType === 'admin') {
-    //     navigate('/admin')
-    // } else if (userType === 'member') {
-    //     navigate('/member')
-    // } else {
-    //     navigate('/')
-    // }
-
-
-    // console.log(finalData.token);
-
-
-    // Store user ID in context and localStorage for authentication
-    // setAdminID(finalData.role[0]._id || finalData.role[0].id)
-
-    // navigate("/")
-
-    // Navigate based on user type
-    // if (finalData.role[0].userType == "admin") {
-    //     navigate("/admin")
-    // } else if (finalData.role[0].userType == "member") {
-    //     navigate("/members")
-    // } else if (finalData.role[0].userType == "user") {
-    //     navigate("/")
-    // }
 
     return (
         <>
@@ -159,12 +109,31 @@ export default function Login() {
                                 </div>
                             </div>
 
-                            <button
+                            {/* <button
                                 type="submit"
                                 className="w-full bg-[#FD4C00] hover:bg-[#fd4c00bb] font-bold px-4 py-3 rounded-[10px] border-2 border-[#FD4C00] hover:border-[#fd4c00bb] transition-colors cursor-pointer"
                             >
                                 Login
-                            </button>
+                            </button> */}
+                            <button
+    type="submit"
+    disabled={loading}
+    className={`w-full font-bold px-4 py-3 rounded-[10px] border-2 transition-colors
+        ${loading
+            ? 'bg-[#fd4c00bb] border-[#fd4c00bb] cursor-not-allowed'
+            : 'bg-[#FD4C00] hover:bg-[#fd4c00bb] border-[#FD4C00] hover:border-[#fd4c00bb] cursor-pointer'
+        }`}
+>
+    {loading ? (
+        <div className="flex items-center justify-center gap-2">
+            <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+            Logging in...
+        </div>
+    ) : (
+        'Login'
+    )}
+</button>
+
                         </form>
 
                         <div className="mt-6 text-center">
