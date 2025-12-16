@@ -94,6 +94,7 @@ export default function AdminDashboard() {
                             <button className='text-sm text-[#FD4C00] hover:underline'>View all</button>
                         </div>
                         <div className='overflow-x-auto'>
+                            {userData.length > 0 ?
                             <table className='w-full text-left text-sm'>
                                 <thead>
                                     <tr className='text-gray-500'>
@@ -104,14 +105,14 @@ export default function AdminDashboard() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {/* {userData.slice(0, 3).map((items, index) => (
+                                     {userData.slice(0, 3).map((items, index) => (
                                         <tr className='border-t'>
                                             <td className='py-2 pr-4'>{items.userName}</td>
                                             <td className='py-2 pr-4'>{items.userEmail}</td>
                                             <td className='py-2 pr-4'>{items.membership}</td>
                                             <td className='py-2 pr-4'>{new Date(items.createdAt).toLocaleDateString()}</td>
                                         </tr>
-                                    ))} */}
+                                    ))}
 
                                     {/* <tr className='border-t'>
                                         <td className='py-2 pr-4'>Ava Smith</td>
@@ -127,7 +128,7 @@ export default function AdminDashboard() {
                                     </tr> */}
                                 </tbody>
                             </table>
-                            {userData.length <= 5 &&
+                            :
                                 <div className="text-center py-8">
                                     <p className="text-blue-600 mb-4">
                                         You haven't created any Member yet.
